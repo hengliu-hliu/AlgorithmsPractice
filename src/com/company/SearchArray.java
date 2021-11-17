@@ -67,6 +67,7 @@ class SearchArray implements StructSearch{
     }
 
     //binary search
+    ///*** current errors still
     public int binarySearch(int element, int lo, int hi){
         if(lo == 0) {
             lastOperation = "Binary Search";
@@ -103,6 +104,8 @@ class SearchArray implements StructSearch{
                 indexOfElement = -1;
                 break;
             }
+            System.out.println(low);
+            System.out.println(high);
 
             if(arr[index] > element) {
                 high = index -1;
@@ -218,18 +221,61 @@ class SearchArray implements StructSearch{
             index = index*2;
         }
 
-//        for(int i = index/2; i < index; i++){
-//            numOfOperations++;
-//            if(arr[i] == element){
-//                indexOfElement = i;
-//            }
-//        }
         int lo = index/2;
         int hi = index;
         if(hi>arr.length-1){
             hi = arr.length-1;
         }
         binarySearch(element, lo, hi);
+
+        return indexOfElement;
+    }
+
+    public int fibonacciSearch(int element){
+        lastOperation = "Fibonacci Search";
+        timeComplexity = "O(Log n)";
+        numOfOperations = 0;
+        searchedElement = element;
+        indexOfElement = -1;
+
+        int fib1 = 0;
+        int fib2 = 1;
+        int fibNext = fib1 + fib2;
+
+        while(fibNext < arr.length){
+            fib1 = fib2;
+            fib2 = fibNext;
+            fibNext = fib1 + fib2;
+        }
+
+        int offset = -1;
+
+        while(fibNext > 1){
+            numOfOperations++;
+            int i = Math.min(offset + fib1, arr.length-1);
+            System.out.println(i);
+            if(arr[i] < element){
+                fibNext = fib2;
+                fib2 = fib1;
+                fib1 = fibNext - fib2;
+                offset = i;
+            }else if(arr[i] > element){
+                fibNext = fib1;
+                fib2 = fib2 - fib1;
+                fib1 = fibNext -fib2;
+            }else{
+                indexOfElement = i;
+                return indexOfElement;
+            }
+        }
+
+        if(fib2 == 1 && arr[arr.length-1] == element){
+            numOfOperations++;
+            indexOfElement = arr.length-1;
+            return indexOfElement;
+        }
+        numOfOperations++;
+        indexOfElement = -1;
 
         return indexOfElement;
     }

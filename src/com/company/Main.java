@@ -8,7 +8,7 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) {
-//        runAll(10000000, 4596837);
+        runAll(10000000, 4596837);
         runAll(100000000, 76879847);
 
     }
@@ -24,6 +24,8 @@ public class Main {
         thirdSearchArr.interpolationSearch(element);
         System.out.println(thirdSearchArr.getSearchStats());
         thirdSearchArr.exponentialSearch(element);
+        System.out.println(thirdSearchArr.getSearchStats());
+        thirdSearchArr.fibonacciSearch(element);
         System.out.println(thirdSearchArr.getSearchStats());
 
     }
