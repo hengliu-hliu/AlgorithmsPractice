@@ -8,23 +8,31 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) {
-        SearchArray thirdSearchArr = new SearchArray(generateRanArray(1000000));
-        thirdSearchArr.linearSearch(10681);
+//        runAll(10000000, 4596837);
+        runAll(100000000, 76879847);
+
+    }
+
+    public static void runAll(int arrSize, int element){
+        SearchArray thirdSearchArr = new SearchArray(generateRanArray(arrSize));
+        thirdSearchArr.linearSearch(element);
         System.out.println(thirdSearchArr.getSearchStats());
-        thirdSearchArr.binarySearch(10681);
+        thirdSearchArr.binarySearch(element, 0, -1);
         System.out.println(thirdSearchArr.getSearchStats());
-        thirdSearchArr.jumpSearch(10681);
+        thirdSearchArr.jumpSearch(element);
         System.out.println(thirdSearchArr.getSearchStats());
-        thirdSearchArr.interpolationSearch(10681);
+        thirdSearchArr.interpolationSearch(element);
+        System.out.println(thirdSearchArr.getSearchStats());
+        thirdSearchArr.exponentialSearch(element);
         System.out.println(thirdSearchArr.getSearchStats());
 
     }
 
-    public static int[] generateRanArray(int n){
+    public static int[] generateRanArray(int size){
         Random rand = new Random();
-        int[] arr = new int[n];
-        for(int i = 0; i < n; i++ ) {
-            arr[i] = rand.nextInt(1000000);
+        int[] arr = new int[size];
+        for(int i = 0; i < size; i++ ) {
+            arr[i] = rand.nextInt(size);
         }
 
         return arr;

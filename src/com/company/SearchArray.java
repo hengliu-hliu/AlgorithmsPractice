@@ -67,15 +67,30 @@ class SearchArray implements StructSearch{
     }
 
     //binary search
-    public int binarySearch(int element){
-        lastOperation = "Binary Search";
-        timeComplexity = "O(log n)";
-        numOfOperations = 0;
-        searchedElement = element;
-        indexOfElement = -1;
+    public int binarySearch(int element, int lo, int hi){
+        if(lo == 0) {
+            lastOperation = "Binary Search";
+            timeComplexity = "O(log n)";
+            numOfOperations = 0;
+            searchedElement = element;
+            indexOfElement = -1;
+        }
 
-        int low = 0;
-        int high = arr.length;
+        int low;
+        int high;
+
+        if(lo == -1){
+            low = 0;
+        }else{
+            low = lo;
+        }
+
+        if(hi == -1){
+            high = arr.length;
+        }else{
+            high = hi;
+        }
+
 
         while(true){
             numOfOperations++;
@@ -182,7 +197,14 @@ class SearchArray implements StructSearch{
     }
 
     //Exponential Search
+    /*especially useful for unbounded searches - arrays of infinite length
+      works better for items near beginning of list*/
     public int exponentialSearch(int element){
+        lastOperation = "Exponential Search";
+        timeComplexity = "O(Log n)";
+        numOfOperations = 0;
+        searchedElement = element;
+        indexOfElement = -1;
         int index = 0;
 
         if(arr[index] == element){
@@ -192,12 +214,24 @@ class SearchArray implements StructSearch{
         }
         index++;
 
-        while(arr[index] < element){
+        while(index < arr.length && arr[index] < element){
             index = index*2;
         }
 
+//        for(int i = index/2; i < index; i++){
+//            numOfOperations++;
+//            if(arr[i] == element){
+//                indexOfElement = i;
+//            }
+//        }
+        int lo = index/2;
+        int hi = index;
+        if(hi>arr.length-1){
+            hi = arr.length-1;
+        }
+        binarySearch(element, lo, hi);
 
-
+        return indexOfElement;
     }
 
 }
