@@ -1,19 +1,18 @@
 package com.company;
 
 
-import javax.sound.midi.SysexMessage;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
 
     public static void main(String[] args) {
-        runAll(10000000, 4596837);
-        runAll(100000000, 76879847);
+//        runAllSearchArray(10000000, 4596837);
+//        runAllSearchArray(100000000, 76879847);
 
+        runAllSortArray(50);
     }
 
-    public static void runAll(int arrSize, int element){
+    public static void runAllSearchArray(int arrSize, int element){
         SearchArray thirdSearchArr = new SearchArray(generateRanArray(arrSize));
         thirdSearchArr.linearSearch(element);
         System.out.println(thirdSearchArr.getSearchStats());
@@ -28,6 +27,16 @@ public class Main {
         thirdSearchArr.fibonacciSearch(element);
         System.out.println(thirdSearchArr.getSearchStats());
 
+    }
+
+    public static void runAllSortArray(int arrSize){
+        int[] arr = generateRanArray(arrSize);
+        SortArray mySortArr = new SortArray(arr);
+        SortArray mySortArr2 = new SortArray(arr);
+        mySortArr.selectionSort();
+        System.out.println(mySortArr.getSearchStats());
+        mySortArr2.bubbleSort();
+        System.out.println(mySortArr2.getSearchStats());
     }
 
     public static int[] generateRanArray(int size){

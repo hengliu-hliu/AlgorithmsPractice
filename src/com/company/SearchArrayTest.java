@@ -3,7 +3,6 @@ package com.company;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 
-
 import static com.company.Main.generateRanArray;
 
 public class SearchArrayTest {

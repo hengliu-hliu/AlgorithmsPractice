@@ -4,3 +4,4 @@ public interface StructSearch{
     String toString();
     String returnStructType();
 }
+
