@@ -9,7 +9,7 @@ public class Main {
 //        runAllSearchArray(10000000, 4596837);
 //        runAllSearchArray(100000000, 76879847);
 
-        runAllSortArray(50);
+        runAllSortArray(85);
     }
 
     public static void runAllSearchArray(int arrSize, int element){
@@ -33,10 +33,16 @@ public class Main {
         int[] arr = generateRanArray(arrSize);
         SortArray mySortArr = new SortArray(arr);
         SortArray mySortArr2 = new SortArray(arr);
+        SortArray mySortArr3 = new SortArray(arr);
+        SortArray mySortArr4 = new SortArray(arr);
         mySortArr.selectionSort();
         System.out.println(mySortArr.getSearchStats());
         mySortArr2.bubbleSort();
         System.out.println(mySortArr2.getSearchStats());
+        mySortArr3.insertionSort();
+        System.out.println(mySortArr3.getSearchStats());
+        mySortArr4.mergeSort(mySortArr4.getArr(),0,arrSize);
+        System.out.println(mySortArr4.getSearchStats());
     }
 
     public static int[] generateRanArray(int size){
